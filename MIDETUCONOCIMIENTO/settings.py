@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'ajustes_servidor',
     'cuestionario',
 ]
@@ -129,3 +130,31 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#######################################################
+#                                                     #
+#               Configuracion de CKEDITOR             #
+#                                                     #
+#######################################################
+
+CKEDITOR_UPLOAD_PATH = "uploads/"  # Carpeta donde se guardarán los archivos subidos
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'  # URL de jQuery
+CKEDITOR_CONFIGS = {
+
+    'default': {
+        'skin': 'moono',
+        'toolbar': 'Custom',  # Selecciona la configuración de la barra de herramientas
+        'toolbar_Custom': [
+            # Puedes personalizar los grupos de botones aquí
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            '/',
+            {'name': 'basicstyles', 'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'links', 'items': ['Link', 'Unlink']},
+            {'name': 'paragraph', 'items': ['NumberedList', 'BulletedList', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+            {'name': 'styles', 'items': ['Styles', 'Format']},
+            {'name': 'insert', 'items': ['Image', 'Table', 'HorizontalRule', 'SpecialChar']},
+        ],
+    },
+
+
+}
