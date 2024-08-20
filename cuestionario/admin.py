@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cuestionario
+from .models import *
 # Register your models here.
 @admin.register(Cuestionario)
 class Cuestionario_admin(admin.ModelAdmin):
@@ -10,3 +10,9 @@ class Cuestionario_admin(admin.ModelAdmin):
     date_hierarchy = 'fecha_ingreso'
     verbose_name = "Cuestionario"
     verbose_name_plural = "Cuestionarios"
+#, Opcion, Respuesta, Resultado
+
+admin.site.register(Pregunta)
+admin.site.register(Opcion)
+admin.site.register(Respuesta)
+admin.site.register(Resultado)
