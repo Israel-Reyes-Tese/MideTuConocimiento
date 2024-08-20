@@ -1,0 +1,92 @@
+{% load static %}
+{% spaceless %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {# ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ #}
+    {# CSS Para heredar #}
+    {# Generales CSS #}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    {# Generales CSS #}
+    {# Header CSS #}
+    {# Header CSS #}
+    {# ICO  #}
+    <link rel="icon" type="image/x-icon" href="{% static 'img/ico/favicon.ico' %}">
+    {# ICO  #}
+    {# CSS Para heredar #}
+    {# ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ #}
+    {# CSS Para heredar en la nube #}
+
+    {# CSS Para heredar en la nube #}
+    {# ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# Bloque de titulo #}
+    {% block title %}
+    {% endblock %}
+    {# Bloque de titulo #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# Bloque de estilos almacenados en la web #}
+
+    {% block style_web %}
+    {% endblock %}
+
+    {# Bloque de estilos almacenados en la web #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# Bloque de estilos almacenados en la local #}
+
+    {% block style_local %}
+    {% endblock %}
+
+    {# Bloque de estilos almacenados en la local #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# Bloque de javascript encabezado #}
+
+    {% block javascript-head %}
+    {% endblock %}
+
+    {# Bloque de javascript encabezado #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+
+</head>
+<body>
+{% block body %}
+    {# Body #}
+    {# Body #}
+{% endblock %}
+</body>
+
+<footer>
+    {# ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ #}
+    {# JS Para heredar superior #}
+    {# JS Para heredar superior #}
+    {# ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ #}
+    {# JS Para heredar en la nube superior #}
+    {# JS Para heredar en la nube superior #}
+    {# ◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘◘ #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# Bloque de javascript footer almacenados en la web #}
+    {% block javascript-footer-web %}
+
+    {% endblock %}
+    {# Bloque de javascript footer almacenados en la web #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+    {# Bloque de javascript footer almacenados en local #}
+
+    {% block javascript-footer-local %}
+    {% endblock %}
+    {# Bloque de javascript footer almacenados en local#}
+    {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
+</footer>
+
+</html>
+{% endspaceless %}

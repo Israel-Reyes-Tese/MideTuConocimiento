@@ -58,7 +58,7 @@ ROOT_URLCONF = 'MIDETUCONOCIMIENTO.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,"templates-plantillas html")],
+        'DIRS': [os.path.join(BASE_DIR,"templates-plantillas-html")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

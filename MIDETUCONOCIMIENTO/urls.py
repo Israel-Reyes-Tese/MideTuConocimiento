@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+#
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     # Herramienta de texto ckeditor
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    ############################# URLS CUESTIONARIO #############################
+    path('', include('cuestionario.urls')),
 
 ]
