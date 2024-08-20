@@ -3,14 +3,15 @@
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
 {# Bloque de titulo #}
 {% block title %}
-<title> Inicio </title>
+<title>MideTuConocimiento</title>
 {% endblock %}
 {# Bloque de titulo #}
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
 {# Bloque de estilos almacenados en la web #}
 {% block style_web %}
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 {% endblock %}
 {# Bloque de estilos almacenados en la web #}
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
@@ -26,7 +27,91 @@
 {# Bloque de body-cuerpo #}
 
 {% block body %}
-<h1> Bienvenido {{usuario_nombre}}</h1>
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <i class="fas fa-brain"></i> MideTuConocimiento
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <form class="form-inline mx-auto">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar en la biblioteca de MideTuConocimiento">
+        </form>
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                    Biblioteca de...
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Opción 1</a>
+                    <a class="dropdown-item" href="#">Opción 2</a>
+                    <a class="dropdown-item" href="#">Opción 3</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-key"></i> Introducir código</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary nav-link text-white" href="#"><i class="fas fa-user-plus"></i> Registrarse</a>
+            </li>
+        </ul>
+    </div>
+</header>
+<main class="text-center mt-5">
+    <h1 class="main-title">¿Cómo te quieres desafiar?</h1>
+    <div class="search-container mx-auto my-4">
+        <input type="text" class="form-control search-input" placeholder="Busca pruebas sobre cualquier tema">
+        <button class="btn search-btn"><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="carousel-container mx-auto">
+        <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
+        <div class="categories-container d-flex">
+            <div class="category-item">
+                <i class="fas fa-calculator category-icon"></i>
+                <p>Matemáticas</p>
+            </div>
+            <div class="category-item">
+                <i class="fas fa-language category-icon"></i>
+                <p>Inglés</p>
+            </div>
+            <div class="category-item">
+                <i class="fas fa-globe category-icon"></i>
+                <p>Estudios sociales</p>
+            </div>
+            <div class="category-item">
+                <i class="fas fa-globe-americas category-icon"></i>
+                <p>Idiomas</p>
+            </div>
+            <div class="category-item">
+                <i class="fas fa-flask category-icon"></i>
+                <p>Ciencias</p>
+            </div>
+            <div class="category-item">
+                <i class="fas fa-desktop category-icon"></i>
+                <p>Informática</p>
+            </div>
+            <div class="category-item">
+                <i class="fas fa-briefcase category-icon"></i>
+                <p>Ed profesional</p>
+            </div>
+            <div class="category-item">
+                <i class="fas fa-paint-brush category-icon"></i>
+                <p>Artes creativas</p>
+            </div>
+            <div class="category-item">
+                <i class="fas fa-futbol category-icon"></i>
+                <p>Salud y Ed Física</p>
+            </div>
+        </div>
+        <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</main>
+
 {% endblock %}
 
 
@@ -36,14 +121,43 @@
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
 {# Bloque de javascript footer almacenados en la web #}
 {% block javascript-footer-web %}
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}
 {# Bloque de javascript footer almacenados en la web #}
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
 {# Bloque de javascript footer almacenados en local #}
 {% block javascript-footer-local %}
+<script>
+    let currentIndex = 0;
 
+const categoryContainer = document.querySelector('.categories-container');
+const categoryItems = document.querySelectorAll('.category-item');
+const totalItems = categoryItems.length;
+
+document.querySelector('.carousel-control.next').addEventListener('click', () => {
+    if (currentIndex < totalItems - 3) { // Ajusta el número 3 dependiendo de cuántos elementos quieras mostrar por vez
+        currentIndex++;
+        updateCarousel();
+    }
+});
+
+document.querySelector('.carousel-control.prev').addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+    }
+});
+
+function updateCarousel() {
+    const itemWidth = categoryItems[0].clientWidth + 20; // Ajusta el padding/margin
+    const newTransformValue = -itemWidth * currentIndex;
+    categoryContainer.style.transform = `translateX(${newTransformValue}px)`;
+}
+
+</script>
 {% endblock %}
 {# Bloque de javascript footer almacenados en local#}
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
