@@ -133,3 +133,41 @@ body {
 .carousel-control.next {
     right: 0;
 }
+
+/*Listado de tarjetas */
+.section-title {
+    color: #33FF9C;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #B8FCC5;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-title {
+    color: #2b2000;
+    font-weight: bold;
+}
+
+.card-footer {
+    background-color: #66E3FF;
+    color: #2b2000;
+    border-top: none;
+    text-align: center;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+.card-img-top {
+    border-radius: 15px 15px 0 0;
+}
