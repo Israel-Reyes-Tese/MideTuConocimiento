@@ -120,96 +120,48 @@
 
 {# Contenedor listado de tarjetas numero 1 #}
 <div class="container my-5">
-    <h2 class="section-title text-center"><i class="fas fa-star"></i> Matemáticas</h2>
+    <h2 class="section-title text-center"><i class="fas fa-star"></i> {{tag_1.titulo}}</h2>
     <div class="row justify-content-center">
-        {# Más tarjetas #}
-        <div class="col-md-4 d-flex justify-content-center mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Matemáticas">
-                <div class="card-body">
-                    <h5 class="card-title">Basic Geometric Ideas</h5>
-                    <p class="card-text">I can use geometric terminology.</p>
-                </div>
-                <div class="card-footer">
-                    <small>20 Diapositivas • 256 jugadas</small>
-                </div>
-            </div>
-        </div>
-        {# Más tarjetas #}
-        <div class="col-md-4 d-flex justify-content-center mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Jerarquía de operaciones">
-                <div class="card-body">
-                    <h5 class="card-title">Jerarquía de operaciones</h5>
-                    <p class="card-text">Explora las reglas matemáticas.</p>
-                </div>
-                <div class="card-footer">
-                    <small>6 Preguntas • 1.7K jugadas</small>
-                </div>
-            </div>
-        </div>
-        {# Más tarjetas #}
-        <div class="col-md-4 d-flex justify-content-center mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Jerarquía de operaciones">
-                <div class="card-body">
-                    <h5 class="card-title">Jerarquía de operaciones</h5>
-                    <p class="card-text">Explora las reglas matemáticas.</p>
-                </div>
-                <div class="card-footer">
-                    <small>6 Preguntas • 1.7K jugadas</small>
-                </div>
-            </div>
-        </div>
-        {# Más tarjetas #}
 
+        {% for cursos_tag_1 in  regisros_tag_1 %}
+        {# Más tarjetas #}
+        <div class="col-md-4 d-flex justify-content-center mb-4">
+            <div class="card" style="width: 18rem;">
+                <img src="{{cursos_tag_1.imagen}}" class="card-img-top" alt="Matemáticas">
+                <div class="card-body">
+                    <h5 class="card-title">{{cursos_tag_1.titulo}}</h5>
+                    <p class="card-text">{{cursos_tag_1.descripcion|safe}}</p>
+                </div>
+                <div class="card-footer">
+                    <small>{{cursos_tag_1.preguntas.all.count}} Pregunta(s) • {{cursos_tag_1.dificultad}}</small>
+                </div>
+            </div>
+        </div>
+        {# Más tarjetas #}
+        {% endfor %}
     </div>
 </div>
 {# Contenedor listado de tarjetas numero 1 #}
 {# Contenedor listado de tarjetas numero 2 #}
 <div class="container my-5">
-    <h2 class="section-title text-center"><i class="fas fa-star"></i> Informática</h2>
+    <h2 class="section-title text-center"><i class="fas fa-star"></i> {{tag_2.titulo}}</h2>
     <div class="row justify-content-center">
+        {% for cursos_tag_2 in  regisros_tag_2 %}
         {# Más tarjetas #}
         <div class="col-md-4 d-flex justify-content-center mb-4">
             <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Matemáticas">
+                <img src="{{cursos_tag_2.imagen}}" class="card-img-top" alt="Matemáticas">
                 <div class="card-body">
-                    <h5 class="card-title">Basic Geometric Ideas</h5>
-                    <p class="card-text">I can use geometric terminology.</p>
+                    <h5 class="card-title">{{cursos_tag_2.titulo}}</h5>
+                    <p class="card-text">{{cursos_tag_2.descripcion|safe}}</p>
                 </div>
                 <div class="card-footer">
-                    <small>20 Diapositivas • 256 jugadas</small>
+                    <small>{{cursos_tag_2.preguntas.all.count}} Pregunta(s) • {{cursos_tag_2.dificultad}}</small>
                 </div>
             </div>
         </div>
         {# Más tarjetas #}
-        <div class="col-md-4 d-flex justify-content-center mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Jerarquía de operaciones">
-                <div class="card-body">
-                    <h5 class="card-title">Jerarquía de operaciones</h5>
-                    <p class="card-text">Explora las reglas matemáticas.</p>
-                </div>
-                <div class="card-footer">
-                    <small>6 Preguntas • 1.7K jugadas</small>
-                </div>
-            </div>
-        </div>
-        {# Más tarjetas #}
-        <div class="col-md-4 d-flex justify-content-center mb-4">
-            <div class="card" style="width: 18rem;">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Jerarquía de operaciones">
-                <div class="card-body">
-                    <h5 class="card-title">Jerarquía de operaciones</h5>
-                    <p class="card-text">Explora las reglas matemáticas.</p>
-                </div>
-                <div class="card-footer">
-                    <small>6 Preguntas • 1.7K jugadas</small>
-                </div>
-            </div>
-        </div>
-        {# Más tarjetas #}
+        {% endfor %}
 
     </div>
 </div>
