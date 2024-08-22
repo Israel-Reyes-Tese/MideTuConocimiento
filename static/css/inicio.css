@@ -1,71 +1,172 @@
-       body, html {
-            height: 100%;
-            margin: 0;
-            background-color: #2b2b2b;
-            color: #fff;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
-        .main-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .question-container {
-            background-color: #B8FCC5;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 1000px;
-        }
-        .option-card {
-            background-color: #03FFD9;
-            border-radius: 10px;
-            color: #2b2b2b;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-        .option-card:hover {
-            transform: scale(1.05);
-        }
-        .option-card h5 {
-            margin: 0;
-            padding: 15px 0;
-            font-size: 1.25rem;
-            text-align: center;
-        }
-        .footer-container {
-            background-color: #1b1b1b;
-            padding: 15px 0;
-            text-align: center;
-            border-top: 2px solid #fff;
-        }
-        .footer-item {
-            color: #fff;
-            margin: 0 15px;
-            font-size: 1.2rem;
-        }
-        .footer-item i {
-            font-size: 2rem;
-            color: #33FF9C;
-        }
-        .footer-item span {
-            display: block;
-            font-size: 1rem;
-            margin-top: 5px;
-        }
-        .btn-home {
-            background-color: #33FF9C;
-            color: #2b2b2b;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 20px;
-            transition: background-color 0.3s ease;
-        }
-        .btn-home:hover {
-            background-color: #03FFD9;
-            color: #fff;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #3569b7 !important;
+}
+
+.navbar {
+    background-color: #374543 !important;
+}
+
+.navbar-brand {
+    color: #33FF9C !important;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-brand i {
+    color: #66E3FF;
+}
+
+.form-control {
+    background-color: ffffff;
+    border: 1px solid #33FF9C;
+    border-radius: 20px;
+}
+
+.navbar-nav .nav-link {
+    color: #33FF9C !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #66E3FF !important;
+}
+
+.dropdown-menu {
+    background-color: #33e993 !important;
+}
+
+.dropdown-item {
+    color: #33FF9C !important;
+    background-color: #030609 !important;
+}
+
+.dropdown-item:hover {
+    background-color: #91FC77 !important;
+    color: #66E3FF !important;
+}
+
+.btn-primary {
+    background-color: #33FF9C;
+    border-color: #33FF9C;
+}
+
+.btn-primary:hover {
+    background-color: #91FC77;
+    border-color: #91FC77;
+}
+
+.bg-light {
+    background-color: #030609 !important;
+}
+/* ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ Parte del body ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ */
+.main-title {
+    font-size: 36px;
+    color: #33FF9C;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    padding: 5vh;
+
+}
+
+.search-input {
+    width: 85%;
+    padding: 10px;
+    border-radius: 25px 0 0 25px;
+    border: 2px solid #33FF9C;
+    background-color: #ffffff;
+}
+
+.search-btn {
+    background-color: #33FF9C !important;
+    border-radius: 0 25px 25px 0  !important;
+    color: #ffffff !important;
+}
+.carousel-container {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 20vh;
+
+}
+
+.categories-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.category-item {
+    text-align: center;
+    min-width: 200px;
+    margin-right: 20px;
+}
+
+.category-icon {
+    font-size: 50px;
+    color: #03FFD9;
+    margin-bottom: 10px;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.carousel-control.prev {
+    left: 0;
+}
+
+.carousel-control.next {
+    right: 0;
+}
+
+/*Listado de tarjetas */
+.section-title {
+    color: #33FF9C;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #B8FCC5;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-title {
+    color: #2b2000;
+    font-weight: bold;
+}
+
+.card-footer {
+    background-color: #66E3FF;
+    color: #2b2000;
+    border-top: none;
+    text-align: center;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+.card-img-top {
+    border-radius: 15px 15px 0 0;
+}

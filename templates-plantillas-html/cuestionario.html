@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="option-card p-3">
-                    <h5>a) {{opcion_a.texto}}</h5>
+                    <h5 id="opcion_(a)">a) {{opcion_a.texto}}</h5>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
@@ -102,6 +102,12 @@
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
 {# Bloque de javascript footer almacenados en local #}
 {% block javascript-footer-local %}
+<script>
+    opcion_(a).addEventListener('click', function() {
+        alert('Opción A seleccionada');
+    });
+
+</script>
 {% endblock %}
 {# Bloque de javascript footer almacenados en local#}
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
