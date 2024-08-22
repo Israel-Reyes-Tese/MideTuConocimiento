@@ -40,8 +40,8 @@ class Cuestionario(models.Model):
     profesor = models.ForeignKey(usuario, on_delete=models.CASCADE, related_name='cuestionarios', related_query_name="RELACION_FK_%(app_label)s_%(class)s")
     # Relaciones muchos a muchos
     preguntas = models.ManyToManyField("Pregunta", help_text="Preguntas", blank=True, verbose_name="Pregunta",
-                                    related_name="RELACION_%(app_label)s_%(class)s", related_query_name="RELACION_MM_%(app_label)s_%(class)s")
-    
+                                    related_name="RELACION_CUESTIONARIO_PREGUNTA", related_query_name="RELACION_MM_CUESTIONARIO_PREGUNTA")
+
     tag =  models.ManyToManyField(Tags, help_text="Tags", verbose_name="Tag",
                                      related_name="RELACION_CUESTIONARIO_TAGS", related_query_name="RELACION_MM_CUESTIONARIO_TAGS", through='cuestionario_tag', blank=True)
     # Campos date time
@@ -58,9 +58,9 @@ class Cuestionario(models.Model):
         verbose_name_plural = "Cuestionarios"
 
         db_table = "Cuestionario"
-    
+
     def __str__(self):
-        return self.titulo
+        return self.titulo + "RELACION_%(app_label)s_%(class)s"
 #♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣#
 # Modelo pregunta       #
 #♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣#

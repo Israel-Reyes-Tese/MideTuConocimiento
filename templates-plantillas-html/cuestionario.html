@@ -34,26 +34,26 @@
 <!-- Contenedor Principal -->
 <div class="main-content">
     <div class="question-container text-center">
-        <h2 class="mb-4"><i class="fas fa-question-circle"></i> ¿Qué es Git?</h2>
+        <h2 class="mb-4"><i class="fas fa-question-circle"></i> {{primera_pregunta.texto|safe}}</h2>
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="option-card p-3">
-                    <h5>a) Un lenguaje de programación</h5>
+                    <h5>a) {{opcion_a.texto}}</h5>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
                 <div class="option-card p-3">
-                    <h5>b) Un sistema de control de versiones distribuido</h5>
+                    <h5>b) {{opcion_b.texto}}</h5>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
                 <div class="option-card p-3">
-                    <h5>c) Una plataforma para desarrolladores de juegos</h5>
+                    <h5>c) {{opcion_c.texto}}</h5>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
                 <div class="option-card p-3">
-                    <h5>d) Un entorno de desarrollo integrado (IDE)</h5>
+                    <h5>d) {{opcion_d.texto}}</h5>
                 </div>
             </div>
         </div>
