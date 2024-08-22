@@ -38,27 +38,37 @@
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="option-card p-3">
-                    <h5 id="opcion_(a)">a) {{opcion_a.texto}}</h5>
+                    <h5>{{opcion_a.texto}}</h5>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
                 <div class="option-card p-3">
-                    <h5>b) {{opcion_b.texto}}</h5>
+                    <h5>{{opcion_b.texto}}</h5>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
                 <div class="option-card p-3">
-                    <h5>c) {{opcion_c.texto}}</h5>
+                    <h5>{{opcion_c.texto}}</h5>
                 </div>
             </div>
             <div class="col-md-6 mb-4">
                 <div class="option-card p-3">
-                    <h5>d) {{opcion_d.texto}}</h5>
+                    <h5>{{opcion_d.texto}}</h5>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Contendor mensajes -->
+<div id="feedback-container" class="feedback-container">
+    <div id="feedback-message" class="feedback-message">
+        <h2 id="feedback-text"></h2>
+    </div>
+</div>
+<!-- Contendor mensajes -->
+
+
 <!-- Footer -->
 <div class="footer-container">
     <div class="row justify-content-center">
@@ -103,10 +113,74 @@
 {# Bloque de javascript footer almacenados en local #}
 {% block javascript-footer-local %}
 <script>
-    opcion_(a).addEventListener('click', function() {
-        alert('Opción A seleccionada');
-    });
+document.addEventListener("DOMContentLoaded", function() {
+    const optionCards = document.querySelectorAll('.option-card');
+    const feedbackContainer = document.getElementById('feedback-container');
+    const feedbackText = document.getElementById('feedback-text');
+    
+    function showFeedback(message, type) {
+        feedbackText.innerText = message;
 
+        if (type === 'success') {
+            feedbackText.style.color = '#33FF9C'; // Color verde
+        } else {
+            feedbackText.style.color = '#FF4F4F'; // Color rojo
+        }
+
+        feedbackContainer.classList.add('show-feedback');
+
+        setTimeout(function() {
+            feedbackContainer.classList.remove('show-feedback');
+        }, 2000); // Mostrar la animación por 2 segundos
+    }
+
+    optionCards.forEach(function(card) {
+        card.addEventListener('click', async function() {
+            const optionText = this.querySelector('h5').innerText;
+
+            try {
+                const response = await fetch('../../verificar_respuesta/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken') // Asegúrate de enviar el CSRF token
+                    },
+                    body: JSON.stringify({ 'opcion_texto': optionText,
+                                            'cuestionario_id': '{{cuestionarios.id}}',
+                                            'pregunta_id': '{{primera_pregunta.id}}'
+                     })
+                });
+
+                const data = await response.json();
+
+                if (data.correcta) {
+                    showFeedback('¡Respuesta correcta!', 'success');
+                } else {
+                    showFeedback('Respuesta incorrecta.', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un problema al procesar la respuesta.');
+            }
+        });
+    });
+});
+
+// Helper function to get the CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 </script>
 {% endblock %}
 {# Bloque de javascript footer almacenados en local#}
