@@ -18,7 +18,7 @@ from django.shortcuts import render
 # ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ #
 # LIBRERIAS NECESARIAS PARA CREAR LAS VIEWS GENERICAS              
 # ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ #
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 # ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ #
 # DECORADOR PARA REQUERIR ESTAR LOGEADO
 # ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ #
@@ -28,7 +28,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ #
 from django.views import View
 # ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ #
-#  FUNCIONES
+#  CLASSS INICIO
 # ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ #
 class Inicio(LoginRequiredMixin, ListView):
     model = Cuestionario
@@ -50,3 +50,22 @@ class Inicio(LoginRequiredMixin, ListView):
         
         return context
         
+# ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ #
+#  CLASSS CUESTIONARIO
+# ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ #
+class Cuestionario_DetailView(LoginRequiredMixin, DetailView):
+    model = Cuestionario
+    template_name = 'cuestionario.html'
+    context_object_name = 'registro'
+    id_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        model = Cuestionario
+        context = super().get_context_data(**kwargs)
+        # Cuestionario 
+        context["cuestionarios"] = Cuestionario.objects.get(id=self.kwargs['pk'])
+        # Data usuario
+        context["usuario_nombre"] = usuario.objects.get(username=self.request.user.username)
+
+
+        return context

@@ -5,5 +5,6 @@ from django.urls import path
 from .views import *
 urlpatterns = [
         path('inicio/', Inicio.as_view(), name='inicio'),
+        path('cuestionario/<int:pk>/', Cuestionario_DetailView.as_view(), name='cuestionario'),
 
     ]
