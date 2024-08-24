@@ -68,10 +68,11 @@ class Cuestionario_DetailView(LoginRequiredMixin, DetailView):
         context["usuario_nombre"] = usuario.objects.get(username=self.request.user.username)
         # Primer pregunta cuestionario
         context["primera_pregunta"] = context["cuestionarios"].preguntas.all().first()
-        opciones = context["primera_pregunta"].opciones.all()
-        # Asignación de opciones al contexto (a, b, c, d)
-        context["opcion_a"] = opciones[0] if len(opciones) > 0 else None
-        context["opcion_b"] = opciones[1] if len(opciones) > 1 else None
-        context["opcion_c"] = opciones[2] if len(opciones) > 2 else None
-        context["opcion_d"] = opciones[3] if len(opciones) > 3 else None
+        # lista de ID de las preguntas
+        lista_id = [pregunta.id for pregunta in context["cuestionarios"].preguntas.all()]
+        # Elimina el id de la primera pregunta de la lista - lista_id
+        context["id_segunda_pregunta"] = lista_id[1]
+        # Opciones de la primera pregunta
+        context["opciones"] = context["primera_pregunta"].opciones.all() # Obtener todas las opciones relacionadas con la pregunta
+        print("id de la primera pregunta", context["primera_pregunta"].id , "id de la segunda pregunta", context["id_segunda_pregunta"])
         return context

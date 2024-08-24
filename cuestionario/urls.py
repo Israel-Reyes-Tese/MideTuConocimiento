@@ -14,5 +14,7 @@ urlpatterns = [
         #  Rediccionamientos de petición asycrona
         # ♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣ #
         path('verificar_respuesta/', VerificarRespuestaView.as_view(), name='verificar_respuesta'),
+        path('verificar_siguiente_pregunta/', VerificarSiguientePreguntaView.as_view(), name='verificar_siguiente_pregunta'),
+        path('pregunta-cuestionario/<int:pk>/<int:cuestionario_id>/', PreguntaDetailView.as_view(), name='pregunta_cuestionario'),
 
     ]

@@ -33,29 +33,20 @@
 {# Contenedor preguntas #}
 <!-- Contenedor Principal -->
 <div class="main-content">
-    <div class="question-container text-center">
-        <h2 class="mb-4"><i class="fas fa-question-circle"></i> {{primera_pregunta.texto|safe}}</h2>
+    <div id="question-container" class="question-container text-center">
+        <h2 class="mb-4" id="question-text">{{primera_pregunta.texto|safe}}</h2>
+        <input type="hidden" id="question-id" value="{{ primera_pregunta.id }}">
+        <input type="hidden" id="question-next-id" value="{{ id_segunda_pregunta }}">
+        <input type="hidden" id="cuestionario-id" value="{{ cuestionarios.id }}">
+ 
         <div class="row">
+            {% for opcion in opciones %}
             <div class="col-md-6 mb-4">
                 <div class="option-card p-3">
-                    <h5>{{opcion_a.texto}}</h5>
+                    <h5>{{ opcion.texto }}</h5>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
-                <div class="option-card p-3">
-                    <h5>{{opcion_b.texto}}</h5>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="option-card p-3">
-                    <h5>{{opcion_c.texto}}</h5>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="option-card p-3">
-                    <h5>{{opcion_d.texto}}</h5>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -106,6 +97,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+
 {% endblock %}
 {# Bloque de javascript footer almacenados en la web #}
 {# ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦ #}
@@ -117,7 +111,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const optionCards = document.querySelectorAll('.option-card');
     const feedbackContainer = document.getElementById('feedback-container');
     const feedbackText = document.getElementById('feedback-text');
-    
+    // Cargar de manera dinámica la pregunta
+    const questionContainer = document.getElementById('question-container');
+    const questionText = document.getElementById('question-text');
+    const questionId = document.getElementById('question-id').value;
+    const question_nextId = document.getElementById('question-next-id').value;
+
+    var lista_preguntas_respondidas = [];
+ 
     function showFeedback(message, type) {
         feedbackText.innerText = message;
 
@@ -138,6 +139,13 @@ document.addEventListener("DOMContentLoaded", function() {
         card.addEventListener('click', async function() {
             const optionText = this.querySelector('h5').innerText;
 
+            var cuestionario_id = document.getElementById('cuestionario-id').value;
+            var pregunta_id = document.getElementById('question-id').value;
+
+            const nextQuestionUrl = `/pregunta-cuestionario/${question_nextId}/${cuestionario_id}`;
+            // Agregar el id de la pregunta a la lista de preguntas respondidas
+            lista_preguntas_respondidas.push(pregunta_id);
+            // Verificacion de repuesta 
             try {
                 const response = await fetch('../../verificar_respuesta/', {
                     method: 'POST',
@@ -146,8 +154,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         'X-CSRFToken': getCookie('csrftoken') // Asegúrate de enviar el CSRF token
                     },
                     body: JSON.stringify({ 'opcion_texto': optionText,
-                                            'cuestionario_id': '{{cuestionarios.id}}',
-                                            'pregunta_id': '{{primera_pregunta.id}}'
+                                            'cuestionario_id': cuestionario_id,
+                                            'pregunta_id':  pregunta_id,
+                                            'lista_preguntas': lista_preguntas_respondidas
                      })
                 });
 
@@ -162,6 +171,59 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.error('Error:', error);
                 alert('Hubo un problema al procesar la respuesta.');
             }
+
+            // Verificacion de siguiente pregunta
+
+            try {
+                const verificacion_siguiente_pregunta = await fetch('../../verificar_siguiente_pregunta/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken') // Asegúrate de enviar el CSRF token
+                    },
+                    body: JSON.stringify({ 'cuestionario_id': cuestionario_id,
+                                            'pregunta_id':  pregunta_id,
+                                            'lista_preguntas': lista_preguntas_respondidas
+                     })
+                    // Enviar el listado de preguntas respondidas
+                });
+
+                const data_verificacion_siguiente_pregunta = await verificacion_siguiente_pregunta.json();
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un problema al procesar la respuesta.');
+            }
+
+            if (data_verificacion_siguiente_pregunta.siguiente) {
+                // Cargar de manera dinámica la siguiente pregunta
+                const response_next_question_GET = await fetch(nextQuestionUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken'),                        
+                        // Asegúrate de enviar el CSRF token
+                    },
+                });
+                const data_next_question = await response_next_question_GET.json();
+                    setTimeout(function() {
+                    // Actualiza las opciones
+                        data_next_question.opciones.forEach((opcion, index) => {
+                            const optionCard = optionCards[index];
+                            const optionText = optionCard.querySelector('h5');
+                            optionText.innerText = opcion.texto;
+                        });
+                        // Actualiza el titulo de la pregunta transforma el html a texto
+                        // Evita el titulo se muestre asi <p>&iquest;Cual es el commando para poder inicializar un repositorio local?</p>
+                        const sanitizedHtml = DOMPurify.sanitize(data_next_question.pregunta);
+                        questionText.innerHTML = sanitizedHtml;
+                        // Actualiza el id de la pregunta
+                        questionId.value = data_next_question.id;
+                        // Actualiza el id de la siguiente pregunta
+                        question_nextId.value = data_next_question.id_siguiente_pregunta;
+                    }, 2500); // Mostrar la animación por 2 segundos
+            }
+
         });
     });
 });
