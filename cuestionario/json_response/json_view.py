@@ -76,7 +76,9 @@ class VerificarSiguientePreguntaView(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
     def post(self, request, *args, **kwargs):
+        print("Funcion Verificar-Siguiente-PreguntaView")
         data = json.loads(request.body)
+        print(data)
         # Lista de preguntas respondidas
         lista_preguntas_respondidas = data.get('lista_preguntas')
         # Transformar la lista de preguntas respondidas en un conjunto
@@ -88,14 +90,16 @@ class VerificarSiguientePreguntaView(View):
         preguntas = cuestionario.preguntas.all()
         # Eliminar las preguntas respondidas
         preguntas_faltantes = preguntas.exclude(id__in=lista_preguntas_respondidas)
-        # 
-        if preguntas_faltantes.exists():
-            return JsonResponse({'siguiente': True, 'siguiente_pregunta_id': preguntas_faltantes.first().id}, status=200)
-        else:
-            return JsonResponse({'siguiente': False}, status=404)
-
-
-        
+        print("Preguntas faltantes",preguntas_faltantes)
+        try:
+            if preguntas_faltantes.exists():
+                print("Siguiente pregunta", preguntas_faltantes.first().id)
+                return JsonResponse({'siguiente': True, 'siguiente_pregunta_id': preguntas_faltantes.first().id}, status=200)
+            else:
+                print("No hay siguiente pregunta")
+                return JsonResponse({'siguiente': False, 'siguiente_pregunta_id': False}, status=404)
+        except Pregunta.DoesNotExist:
+            return JsonResponse({'error': 'Pregunta no encontrada'}, status=404)
 
 #☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻#
 #                      PREGUNTA DETAIL VIEW
@@ -114,6 +118,7 @@ class PreguntaDetailView(DetailView):
         preguntas = cuestionario.preguntas.all()
         data = {
             'pregunta': pregunta.texto,
+            'pregunta_id': pregunta.id,
             'opciones': [
                 {'texto': opcion.texto, 'id': opcion.id} for opcion in opciones
             ],
